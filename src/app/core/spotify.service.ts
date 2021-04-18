@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core'; 
+import { Artist } from '../artist/artist.model';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class AppComponent {
-  title = 'AppSpotify';
-  artists = [
+export class SpotifyService {
+
+  artist: Artist[]= [
     {
     "external_urls": {
     "spotify": "https://open.spotify.com/artist/2CIMQHirSU0MQqyYHq0eOx"
@@ -136,5 +135,11 @@ export class AppComponent {
     "type": "artist",
     "uri": "spotify:artist:1vCWHaC5f2uS3yhpwWbIA6"
     }
-    ];
+    ]
+
+  constructor() { }
+
+  getArtist(id:string){
+    return this.artist.find( item => id === item.id);
+  }
 }
